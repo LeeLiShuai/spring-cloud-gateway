@@ -26,6 +26,7 @@ import org.springframework.web.server.WebFilter;
  *
  * @author Rossen Stoyanchev
  * @since 5.0
+ * 过滤器链
  */
 public interface GatewayFilterChain {
 

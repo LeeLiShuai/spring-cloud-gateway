@@ -28,25 +28,50 @@ import org.springframework.web.server.ServerWebExchange;
 
 /**
  * @author Ben Hale
+ * 异步谓语
  */
 public interface AsyncPredicate<T> extends Function<T, Publisher<Boolean>> {
 
+	/**
+	 * 与
+	 * @param other
+	 * @return
+	 */
 	default AsyncPredicate<T> and(AsyncPredicate<? super T> other) {
 		return new AndAsyncPredicate<>(this, other);
 	}
 
+	/**
+	 * 非
+	 * @return
+	 */
 	default AsyncPredicate<T> negate() {
 		return new NegateAsyncPredicate<>(this);
 	}
 
+	/**
+	 * 带参数的非
+	 * @param other
+	 * @return
+	 */
 	default AsyncPredicate<T> not(AsyncPredicate<? super T> other) {
 		return new NegateAsyncPredicate<>(other);
 	}
 
+	/**
+	 * 或
+	 * @param other
+	 * @return
+	 */
 	default AsyncPredicate<T> or(AsyncPredicate<? super T> other) {
 		return new OrAsyncPredicate<>(this, other);
 	}
 
+	/**
+	 * 包装普通的谓语
+	 * @param predicate
+	 * @return
+	 */
 	static AsyncPredicate<ServerWebExchange> from(
 			Predicate<? super ServerWebExchange> predicate) {
 		return new DefaultAsyncPredicate<>(GatewayPredicate.wrapIfNeeded(predicate));

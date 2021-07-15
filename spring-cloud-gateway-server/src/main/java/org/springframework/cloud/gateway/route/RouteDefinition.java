@@ -36,29 +36,49 @@ import static org.springframework.util.StringUtils.tokenizeToStringArray;
 
 /**
  * @author Spencer Gibb
+ * 路由定义
  */
 @Validated
-public class RouteDefinition {
+public class  RouteDefinition {
 
 	private String id;
 
+	/**
+	 * 谓语定义数组
+	 */
 	@NotEmpty
 	@Valid
 	private List<PredicateDefinition> predicates = new ArrayList<>();
 
+	/**
+	 * 过滤器定义数组
+	 */
 	@Valid
 	private List<FilterDefinition> filters = new ArrayList<>();
 
+	/**
+	 * 路由对应的uri
+	 */
 	@NotNull
 	private URI uri;
 
+	/**
+	 * 元数据
+	 */
 	private Map<String, Object> metadata = new HashMap<>();
 
+	/**
+	 * 顺序
+	 */
 	private int order = 0;
 
 	public RouteDefinition() {
 	}
 
+	/**
+	 * 根据字符串初始化
+	 * @param text
+	 */
 	public RouteDefinition(String text) {
 		int eqIdx = text.indexOf('=');
 		if (eqIdx <= 0) {

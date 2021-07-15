@@ -39,17 +39,33 @@ import static org.springframework.cloud.gateway.support.ServerWebExchangeUtils.t
 
 /**
  * @author Spencer Gibb
+ * 路由
  */
 public class Route implements Ordered {
 
+	/**
+	 * 唯一表示
+	 */
 	private final String id;
 
+	/**
+	 * 最终指向的地址
+	 */
 	private final URI uri;
 
+	/**
+	 * 多个Route之间的排序
+	 */
 	private final int order;
 
+	/**
+	 * 匹配此Route的前置条件
+	 */
 	private final AsyncPredicate<ServerWebExchange> predicate;
 
+	/**
+	 * 过滤器
+	 */
 	private final List<GatewayFilter> gatewayFilters;
 
 	private final Map<String, Object> metadata;
@@ -106,6 +122,7 @@ public class Route implements Ordered {
 		return this.uri;
 	}
 
+	@Override
 	public int getOrder() {
 		return order;
 	}

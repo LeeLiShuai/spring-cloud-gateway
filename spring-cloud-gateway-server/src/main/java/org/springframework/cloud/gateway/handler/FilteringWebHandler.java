@@ -88,6 +88,9 @@ public class FilteringWebHandler implements WebHandler {
 		return new DefaultGatewayFilterChain(combined).filter(exchange);
 	}
 
+	/**
+	 * 过滤器链的默认实现
+	 */
 	private static class DefaultGatewayFilterChain implements GatewayFilterChain {
 
 		private final int index;

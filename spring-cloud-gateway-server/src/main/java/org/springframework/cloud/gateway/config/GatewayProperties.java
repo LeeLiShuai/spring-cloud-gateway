@@ -35,6 +35,7 @@ import org.springframework.validation.annotation.Validated;
 
 /**
  * @author Spencer Gibb
+ * 路由配置
  */
 @ConfigurationProperties(GatewayProperties.PREFIX)
 @Validated

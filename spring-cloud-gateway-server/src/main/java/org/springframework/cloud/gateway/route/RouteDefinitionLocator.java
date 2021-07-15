@@ -20,6 +20,7 @@ import reactor.core.publisher.Flux;
 
 /**
  * @author Spencer Gibb
+ * 路由定义定位器
  */
 public interface RouteDefinitionLocator {
 
